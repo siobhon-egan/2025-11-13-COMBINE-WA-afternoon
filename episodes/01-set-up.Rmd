@@ -1,0 +1,75 @@
+---
+title: "Getting started"
+teaching: 10
+exercises: 2
+---
+
+:::::::::::::::::::::::::::::::::::::: questions 
+
+- What are we doing
+How do you write a lesson using R Markdown and `{sandpaper}`?
+
+::::::::::::::::::::::::::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::: objectives
+
+- Explain how to use markdown with the new lesson template
+- Demonstrate how to include pieces of code, figures, and nested challenge blocks
+
+::::::::::::::::::::::::::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::: objectives
+
+- Explain how to use markdown with the new lesson template
+- Demonstrate how to include pieces of code, figures, and nested challenge blocks
+
+::::::::::::::::::::::::::::::::::::::::::::::::
+
+## Outline
+
+## Part 1 
+
+The first part of this lesson will focus on introducing bioconductor. Material for this will be drawn heavily - but condensed - from the Carpentries Incubator lesson [The Bioconductor project](https://carpentries-incubator.github.io/bioc-project/). During this time we will:
+  - Introduce you to the Bioconductor project and suite of tools.
+  - Explore how we can work with multiple datasets (include genomic sequence data) within the R environment.
+  - To describe the Bioconductor project beyond software packages.
+  - To navigate the Bioconductor website to find packages for a particular task.
+  - To install and update Bioconductor packages.
+  - To open a package vignette and practice running through the examples that they contain.
+  - To identify standard classes and methods re-used across Bioconductor packages.
+  - To modify code and contribute to existing Bioconductor packages.
+  - Best practices to get help from packages developers and peers.
+  
+A good understanding of the Bioconductor project is the foundation to efficiently use Bioconductor packages for the analysis and visualization of -omics data using R and RStudio.
+
+We download and install R packages from Bioconductor and other repositories to write workflows and perform analyses. In order to do so, we first identify packages that are available and relevant to our analysis, and we learn from their documentation the best practices to use them as their authors intended it. For reproducibility, it is also important to identify and track versions of packages used to perform each analysis.
+
+You will also need to install the following packages that will be used throughout the lesson - do this while the instructor is talking!
+
+
+```{r}
+install.packages(c("BiocManager", "remotes"))
+BiocManager::install(c(
+  "S4Vectors", "Biostrings", "BSgenome",
+  "BSgenome.Hsapiens.UCSC.hg38.masked",
+  "GenomicRanges", "rtracklayer", "biomaRt"))
+```
+## Part 2 
+
+The second half of the session will be exploring some packages from the bioconductor suite, working through an example dataset, generating some visualizations and reports for sharing findings.  
+
+::::::::::::::::::::::::::::::::::::::::::  prereq
+
+## Prerequisites
+
+This workshop has been written is an **intermediate R** audience and as such we have made assumptions that participants are familiar with R. If you'd like to a fresh on some concepts we recommend the following:
+
+- [R for Reproducible Scientific Analysis](https://swcarpentry.github.io/r-novice-gapminder/)
+- [Introduction to data analysis with R and Bioconductor](https://carpentries-incubator.github.io/bioc-intro/index.html).
+  
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
+
+## What is bioconductor?
+
+
