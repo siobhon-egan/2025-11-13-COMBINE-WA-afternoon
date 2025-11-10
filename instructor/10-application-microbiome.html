@@ -389,8 +389,12 @@
 
 <p>In this example we will explore some bioconductor packages for the
 analysis of microbiome data.</p>
-<p>During this we will also introduce a new data class -
-<code>phyloseq-class</code> from the package <a href="https://joey711.github.io/phyloseq/" class="external-link"><em>Phyloseq</em></a> that
+<p>During this we will be making use of two main packages from the
+bioconductor library: - <a href="https://www.bioconductor.org/packages/release/bioc/html/microbiome.html" class="external-link"><em>Microbiome</em></a>
+- <a href="https://www.bioconductor.org/packages/release/bioc/html/phyloseq.html" class="external-link"><em>Phyloseq</em></a>
+-</p>
+<p>We will also introduce a new data class - <code>phyloseq-class</code>
+from the package <a href="https://joey711.github.io/phyloseq/" class="external-link"><em>Phyloseq</em></a> that
 uses the S4 class system.</p>
 <blockquote>
 <p>The <a href="https://www.bioconductor.org/packages/release/bioc/html/phyloseq.html" class="external-link"><em>Phyloseq</em></a>
@@ -401,9 +405,21 @@ object-oriented approach provides a structured and organized way to
 handle complex microbiome data, facilitating reproducible analyses and
 data sharing.</p>
 </blockquote>
-<section><h2 class="section-heading" id="install-packages">Install packages<a class="anchor" aria-label="anchor" href="#install-packages"></a></h2>
-<hr class="half-width"><p>Install our <a href="https://www.bioconductor.org/packages/release/bioc/html/microbiome.html" class="external-link"><em>microbiome</em></a>
-package using <code>BiocManager::install()</code></p>
+<p>At its core is the <code>phyloseq-class</code> object, which
+integrates multiple data types: OTU/ASV tables, taxonomic annotations,
+sample metadata, and phylogenetic trees. While originally developed for
+16S rRNA microbiome studies, phyloseq-class objects are also widely used
+in:</p>
+<ul><li>eDNA metabarcoding studies (e.g., biodiversity monitoring in aquatic
+or terrestrial environments)</li>
+<li>Fungal ITS sequencing projects</li>
+<li>Metagenomic and metatranscriptomic datasets with annotated taxonomic
+profiles</li>
+<li>Environmental genomics and ecological community profiling</li>
+</ul><section><h2 class="section-heading" id="install-packages">Install packages<a class="anchor" aria-label="anchor" href="#install-packages"></a></h2>
+<hr class="half-width"><p>Install our <a href="https://www.bioconductor.org/packages/release/bioc/html/microbiome.html" class="external-link"><em>Microbiome</em></a>
+and <a href="https://www.bioconductor.org/packages/release/bioc/html/phyloseq.html" class="external-link"><em>Phyloseq</em></a>
+packages using <code>BiocManager::install()</code></p>
 <div class="codewrapper sourceCode" id="cb1">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -427,27 +443,57 @@ package using <code>BiocManager::install()</code></p>
 <span><span class="kw">library</span><span class="op">(</span><span class="va">knitr</span><span class="op">)</span></span></code></pre>
 </div>
 </section><section><h2 class="section-heading" id="example-datasets">Example datasets<a class="anchor" aria-label="anchor" href="#example-datasets"></a></h2>
-<hr class="half-width"><p>Next we will explore two example datasets that come with the
-microbiome package. We will take some time to explore what information
-they contain, how we can view the datasets and how they differ.</p>
-<p><strong>Explore dataset 1 - ’dietswap”</strong></p>
+<hr class="half-width"><p>We will explore some example datasets that come with the packages <a href="https://microbiome.github.io/tutorials/Data.html" class="external-link">Microbiome*</a>
+and <a href="https://joey711.github.io/phyloseq/Example-Data" class="external-link"><em>Phyloseq</em></a>.
+We will take some time to explore what information they contain, how we
+can view the datasets and how they differ.</p>
+<p><strong>Explore dataset 1 - <code>dietswap</code></strong></p>
+<p>The first dataset we will load is from <a href="https://dx.doi.org/10.1038/ncomms7342" class="external-link">O’Keefe S et al. Nature
+Communications, 2015</a> made available by <a href="https://microbiome.github.io/tutorials/Data.html" class="external-link"><em>Microbiome</em></a>
+package. This study contains microbiome data from a study with African
+and African American groups undergoing a two-week diet swap. This data
+set is based on the Human Intestinal Tract (HIT)Chip phylogenetic 16S
+microarray (<a href="https://doi.org/10.1111/j.1462-2920.2009.01900.x" class="external-link">Rajilic-Stojanovic
+et al. 2009</a>). This profiling technology differs from the more widely
+used 16S rRNA amplicon sequencing. Column metadata includes the subject
+identifier, sex, nationality, group information, sample identifier, time
+point information, time point information within group and BMI group.
+Row metadata contains taxonomic information on the Phylum, Family and
+Genus level.</p>
 <div class="codewrapper sourceCode" id="cb3">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">data</span><span class="op">(</span><span class="va">dietswap</span><span class="op">)</span></span></code></pre>
 </div>
-<p><strong>Explore dataset 2 - ’peerj32”</strong></p>
-<p>Next we will load another data set that contains microbiome data. The
-<code>peerj32</code> data set is from <a href="https://doi.org/10.7717/peerj.32" class="external-link">Lahti et al. PeerJ 1:e32,
-2013</a> characterizes associations between human intestinal microbiota
-and blood serum lipids. Note that this data set contains an additional
-data matrix of lipid species.</p>
+<p><strong>Explore dataset 2 - <code>peerj32</code></strong></p>
+<p>The second dataset we will load is the <code>peerj32</code> data from
+<a href="https://doi.org/10.7717/peerj.32" class="external-link">Lahti et al. PeerJ 1:e32,
+2013</a> made available by <a href="https://microbiome.github.io/tutorials/Data.html" class="external-link"><em>Microbiome</em></a>
+package. This characterizes associations between human intestinal
+microbiota and blood serum lipids. Note that this data set contains an
+additional data matrix of lipid species.</p>
 <div class="codewrapper sourceCode" id="cb4">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">data</span><span class="op">(</span><span class="va">peerj32</span><span class="op">)</span></span></code></pre>
+</div>
+<p><strong>Explore dataset 3 - <code>GlobalPatterns</code></strong></p>
+<p>The third dataset we will load is the <code>GlobalPatterns</code>
+data from <a href="https://doi.org/10.1073/pnas.1000080107" class="external-link">Caporaso et
+al. PNAS, 108, 4516-4522, 2011</a> made available by <a href="https://joey711.github.io/phyloseq/Example-Data" class="external-link"><em>Phyloseq</em></a>.
+This work compared the microbial communities from 25 environmental
+samples and three known “mock communities” – a total of 9 sample types –
+at a depth averaging 3.1 million reads per sample. Authors were able to
+reproduce diversity patterns seen in many other published studies, while
+also investigating technical issues/bias by applying the same techniques
+to simulated microbial communities of known composition.</p>
+<div class="codewrapper sourceCode" id="cb5">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">data</span><span class="op">(</span><span class="va">GlobalPatterns</span><span class="op">)</span></span></code></pre>
 </div>
 <div id="exploring-data" class="callout challenge">
 <div class="callout-square">
@@ -457,12 +503,12 @@ data matrix of lipid species.</p>
 <div id="exploring-data" class="callout-inner">
 <h3 class="callout-title">Exploring data</h3>
 <div class="callout-content">
-<p>Explore the two datasets <code>dietswap</code> and
-<code>perj32</code> that you just loaded. You can do this by navigating
-to your “Environment” pane, or in the console try the following
-<code>pseq@</code> and see what options are available to you. Can you
-view the metadata for this data set? Why does <code>peerj32@</code> not
-work in the same way?</p>
+<p>Explore the datasets <code>dietswap</code>, <code>peerj32</code> and
+<code>GlobalPatterns</code> that you just loaded. You can do this by
+navigating to your “Environment” pane, or in the console try the
+following <code>dietswap@</code> and see what options are available to
+you. Can you view the metadata for this data set? Why does
+<code>peerj32@</code> not work in the same way?</p>
 </div>
 </div>
 </div>
@@ -471,10 +517,69 @@ work in the same way?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>To see the full data within the <code>peerj32</code> object try
 typing <code>peerj32$</code> into the console.</p>
+</div>
+</div>
+</div>
+</div>
+<div id="missing-information" class="callout challenge">
+<div class="callout-square">
+<i class="callout-icon" data-feather="zap"></i>
+</div>
+<span class="callout-header">Challenge</span>
+<div id="missing-information" class="callout-inner">
+<h3 class="callout-title">Missing information</h3>
+<div class="callout-content">
+<p>Can you identify what information is missing in each of the three
+<code>phyloseq-class</code> objects for the datasets above?</p>
+</div>
+</div>
+</div>
+<div id="accordionSolution2" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
+  <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
+</button>
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div class="accordion-body">
+<p>Check the contents of each of the three datasets separately and you
+can see that both <code>dietswap</code> and
+<code>peerj32$phyloseq</code> objects only contain the minimum data
+required - <code>otu_table()</code>, <code>sample_data()</code> and
+<code>tax_table()</code>. The <code>GlobalPatterns</code> data also
+contained additional taxonomic ranks and <code>phy_tree()</code> which
+is a phylogenetic tree that we can use when performing analysis.</p>
+<div class="codewrapper sourceCode" id="cb6">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode r" tabindex="0"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="sc">&gt;</span> dietswap</span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a>phyloseq<span class="sc">-</span>class experiment<span class="sc">-</span>level object</span>
+<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a><span class="fu">otu_table</span>()   OTU Table<span class="sc">:</span>         [ <span class="dv">130</span> taxa and <span class="dv">222</span> samples ]</span>
+<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a><span class="fu">sample_data</span>() Sample Data<span class="sc">:</span>       [ <span class="dv">222</span> samples by <span class="dv">8</span> sample variables ]</span>
+<span id="cb6-5"><a href="#cb6-5" tabindex="-1"></a><span class="fu">tax_table</span>()   Taxonomy Table<span class="sc">:</span>    [ <span class="dv">130</span> taxa by <span class="dv">3</span> taxonomic ranks ]</span></code></pre>
+</div>
+<div class="codewrapper sourceCode" id="cb7">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode r" tabindex="0"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="sc">&gt;</span> peerj32<span class="sc">$</span>phyloseq</span>
+<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a>phyloseq<span class="sc">-</span>class experiment<span class="sc">-</span>level object</span>
+<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a><span class="fu">otu_table</span>()   OTU Table<span class="sc">:</span>         [ <span class="dv">130</span> taxa and <span class="dv">44</span> samples ]</span>
+<span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a><span class="fu">sample_data</span>() Sample Data<span class="sc">:</span>       [ <span class="dv">44</span> samples by <span class="dv">5</span> sample variables ]</span>
+<span id="cb7-5"><a href="#cb7-5" tabindex="-1"></a><span class="fu">tax_table</span>()   Taxonomy Table<span class="sc">:</span>    [ <span class="dv">130</span> taxa by <span class="dv">3</span> taxonomic ranks ]</span></code></pre>
+</div>
+<div class="codewrapper sourceCode" id="cb8">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode r" tabindex="0"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="sc">&gt;</span> GlobalPatterns</span>
+<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a>phyloseq<span class="sc">-</span>class experiment<span class="sc">-</span>level object</span>
+<span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a><span class="fu">otu_table</span>()   OTU Table<span class="sc">:</span>         [ <span class="dv">19216</span> taxa and <span class="dv">26</span> samples ]</span>
+<span id="cb8-4"><a href="#cb8-4" tabindex="-1"></a><span class="fu">sample_data</span>() Sample Data<span class="sc">:</span>       [ <span class="dv">26</span> samples by <span class="dv">7</span> sample variables ]</span>
+<span id="cb8-5"><a href="#cb8-5" tabindex="-1"></a><span class="fu">tax_table</span>()   Taxonomy Table<span class="sc">:</span>    [ <span class="dv">19216</span> taxa by <span class="dv">7</span> taxonomic ranks ]</span>
+<span id="cb8-6"><a href="#cb8-6" tabindex="-1"></a><span class="fu">phy_tree</span>()    Phylogenetic Tree<span class="sc">:</span> [ <span class="dv">19216</span> tips and <span class="dv">19215</span> internal nodes ]</span></code></pre>
+</div>
 </div>
 </div>
 </div>
