@@ -75,7 +75,8 @@ episodes:
 - 07-genomic-ranges.Rmd
 - 08-annotations.Rmd
 - 09-summarizedexperiment.Rmd
-- 10-microbiome.Rmd
+- 10-application-microbiome.Rmd
+- 11-reproducible-analysis.Rmd
 
 # Information for Learners
 learners:
