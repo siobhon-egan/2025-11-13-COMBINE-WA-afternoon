@@ -64,6 +64,7 @@ install.packages("gtsummary")
 install.packages("reshape2")
 install.packages("knitr")
 install.packages("dplyr")
+install.packages("DT")
 
 ## install your Bioconductor packages
 if (!require("BiocManager", quietly = TRUE))
@@ -92,6 +93,10 @@ Have a go at rendering the `.qmd` file.
 Practical opening and "knitting" the `.qmd` file to html output.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
+
+```{r, echo=FALSE, results='asis'}
+htmltools::includeHTML("files/microbiome-data-report.html")
+```
 
 ## Session info
 
