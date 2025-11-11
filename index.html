@@ -397,15 +397,34 @@ talking!</p>
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">install.packages</span><span class="op">(</span><span class="fu">c</span><span class="op">(</span><span class="st">"BiocManager"</span>, <span class="st">"remotes"</span>, <span class="st">"knitr"</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="fu">BiocManager</span><span class="fu">::</span><span class="fu">install</span><span class="op">(</span><span class="fu">c</span><span class="op">(</span></span>
-<span>  <span class="st">"S4Vectors"</span>, <span class="st">"Biostrings"</span>, <span class="st">"BSgenome"</span>,</span>
-<span>  <span class="st">"BSgenome.Hsapiens.UCSC.hg38.masked"</span>,</span>
-<span>  <span class="st">"GenomicRanges"</span>, <span class="st">"rtracklayer"</span>, <span class="st">"biomaRt"</span>,</span>
-<span>  <span class="st">"microbiome"</span><span class="op">)</span><span class="op">)</span></span></code></pre>
+<code class="sourceCode R"><span><span class="co"># Install your CRAN packages</span></span>
+<span><span class="fu">install.packages</span><span class="op">(</span><span class="fu">c</span><span class="op">(</span></span>
+<span>  <span class="st">"BiocManager"</span>,</span>
+<span>  <span class="st">"remotes"</span>,</span>
+<span>  <span class="st">"knitr"</span>,</span>
+<span>  <span class="st">"dplyr"</span>,</span>
+<span>  <span class="st">"ggplot2"</span>,</span>
+<span>  <span class="st">"DT"</span>,</span>
+<span>  <span class="st">"ggpubr"</span></span>
+<span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Install bioconductor packages</span></span>
+<span><span class="fu">BiocManager</span><span class="fu">::</span><span class="fu">install</span><span class="op">(</span></span>
+<span>  <span class="fu">c</span><span class="op">(</span></span>
+<span>    <span class="st">"S4Vectors"</span>,</span>
+<span>    <span class="st">"Biostrings"</span>,</span>
+<span>    <span class="st">"BSgenome"</span>,</span>
+<span>    <span class="st">"BSgenome.Hsapiens.UCSC.hg38.masked"</span>,</span>
+<span>    <span class="st">"GenomicRanges"</span>,</span>
+<span>    <span class="st">"rtracklayer"</span>,</span>
+<span>    <span class="st">"biomaRt"</span>,</span>
+<span>    <span class="st">"microbiome"</span>,</span>
+<span>    <span class="st">"phyloseq"</span></span>
+<span>  <span class="op">)</span></span>
+<span><span class="op">)</span></span></code></pre>
 </div>
-<p>This lesson has been made on the <a href="https://carpentries-incubator.github.io/bioc-intro/index.html" class="external-link">lesson-intro-r-bioconductor</a></p>
-<hr><p>This is a new lesson built with <a href="https://carpentries.github.io/sandpaper-docs" class="external-link">The Carpentries
+<hr><p>This lesson has been made on the <a href="https://carpentries-incubator.github.io/bioc-intro/index.html" class="external-link">lesson-intro-r-bioconductor</a>
+and built with <a href="https://carpentries.github.io/sandpaper-docs" class="external-link">The Carpentries
 Workbench</a>.</p>
 <!--
 Place links that you need to refer to multiple times across pages here. Delete
@@ -425,10 +444,14 @@ and install RStudio</a>. RStudio is an application (an integrated
 development environment or IDE) that facilitates the use of R and offers
 a number of nice additional features. You will need the free Desktop
 version for your computer.</li>
-</ul><!--
+</ul><p>If you don’t already have R and RStudio installed, follow the
+instructions for your operating system below. You have to install R
+before you install RStudio.</p>
+<!--
 Place links that you need to refer to multiple times across pages here. Delete
 any links that you are not going to use.
- --></section></section></main><nav class="bottom-pagination mx-md-4" aria-label="Next Chapter"><!-- content for small screens --><div class="d-block d-sm-block d-md-none">
+ -->
+</section></section></main><nav class="bottom-pagination mx-md-4" aria-label="Next Chapter"><!-- content for small screens --><div class="d-block d-sm-block d-md-none">
         <a class="chapter-link float-end" href="01-introduction.html">Next<i aria-hidden="true" class="small-arrow" data-feather="arrow-right"></i></a>
       </div>
       <!-- content for large screens -->

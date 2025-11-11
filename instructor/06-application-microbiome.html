@@ -263,7 +263,6 @@
       <div class="accordion-body">
         <ul><li><a href="#install-packages">Install packages</a></li>
 <li><a href="#example-datasets">Example datasets</a></li>
-<li><a href="#visualising-data">Visualising data</a></li>
         </ul></div><!--/div.accordion-body-->
     </div><!--/div.accordion-collapse-->
 
@@ -485,7 +484,7 @@ you. Can you view the metadata for this data set? Why does
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>To see the full data within the <code>peerj32</code> object try
 typing <code>peerj32$</code> into the console.</p>
@@ -511,7 +510,7 @@ typing <code>peerj32$</code> into the console.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <p>Check the contents of each of the three datasets separately and you
 can see that both <code>dietswap</code> and
@@ -552,10 +551,11 @@ is a phylogenetic tree that we can use when performing analysis.</p>
 </div>
 </div>
 </div>
-</section><section><h2 class="section-heading" id="visualising-data">Visualising data<a class="anchor" aria-label="anchor" href="#visualising-data"></a></h2>
-<hr class="half-width"><p>Now we will have a go at working through some data visualizations and
-improving asesthetics ready for publications or sharing with
-colleagues.</p>
+</section><div class="section level1">
+<h1 id="working-with-data">Working with data<a class="anchor" aria-label="anchor" href="#working-with-data"></a></h1>
+<p>Now we will have a go at working through some data
+<strong>visualizations</strong> and improving aesthetics ready for
+publications or sharing with colleagues.</p>
 <p>For this exercise we will work through using the
 <code>GlobalPatterns</code> data.</p>
 <blockquote>
@@ -570,93 +570,34 @@ dataset</p>
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">GlobalPatterns</span><span class="op">@</span><span class="va">sam_data</span></span></code></pre>
+<code class="sourceCode R"><span><span class="co">#show just the first five rows</span></span>
+<span><span class="fu">head</span><span class="op">(</span><span class="va">GlobalPatterns</span><span class="op">@</span><span class="va">sam_data</span><span class="op">)</span></span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="output" tabindex="0"><code>Sample Data:        [26 samples by 7 sample variables]:
-         X.SampleID  Primer Final_Barcode Barcode_truncated_plus_T
-CL3             CL3 ILBC_01        AACGCA                   TGCGTT
-CC1             CC1 ILBC_02        AACTCG                   CGAGTT
-SV1             SV1 ILBC_03        AACTGT                   ACAGTT
-M31Fcsw     M31Fcsw ILBC_04        AAGAGA                   TCTCTT
-M11Fcsw     M11Fcsw ILBC_05        AAGCTG                   CAGCTT
-M31Plmr     M31Plmr ILBC_07        AATCGT                   ACGATT
-M11Plmr     M11Plmr ILBC_08        ACACAC                   GTGTGT
-F21Plmr     F21Plmr ILBC_09        ACACAT                   ATGTGT
-M31Tong     M31Tong ILBC_10        ACACGA                   TCGTGT
-M11Tong     M11Tong ILBC_11        ACACGG                   CCGTGT
-LMEpi24M   LMEpi24M ILBC_13        ACACTG                   CAGTGT
-SLEpi20M   SLEpi20M ILBC_15        ACAGAG                   CTCTGT
-AQC1cm       AQC1cm ILBC_16        ACAGCA                   TGCTGT
-AQC4cm       AQC4cm ILBC_17        ACAGCT                   AGCTGT
-AQC7cm       AQC7cm ILBC_18        ACAGTG                   CACTGT
-NP2             NP2 ILBC_19        ACAGTT                   AACTGT
-NP3             NP3 ILBC_20        ACATCA                   TGATGT
-NP5             NP5 ILBC_21        ACATGA                   TCATGT
-TRRsed1     TRRsed1 ILBC_22        ACATGT                   ACATGT
-TRRsed2     TRRsed2 ILBC_23        ACATTC                   GAATGT
-TRRsed3     TRRsed3 ILBC_24        ACCACA                   TGTGGT
-TS28           TS28 ILBC_25        ACCAGA                   TCTGGT
-TS29           TS29 ILBC_26        ACCAGC                   GCTGGT
-Even1         Even1 ILBC_27        ACCGCA                   TGCGGT
-Even2         Even2 ILBC_28        ACCTCG                   CGAGGT
-Even3         Even3 ILBC_29        ACCTGT                   ACAGGT
-         Barcode_full_length         SampleType
-CL3              CTAGCGTGCGT               Soil
-CC1              CATCGACGAGT               Soil
-SV1              GTACGCACAGT               Soil
-M31Fcsw          TCGACATCTCT              Feces
-M11Fcsw          CGACTGCAGCT              Feces
-M31Plmr          CGAGTCACGAT               Skin
-M11Plmr          GCCATAGTGTG               Skin
-F21Plmr          GTAGACATGTG               Skin
-M31Tong          TGTGGCTCGTG             Tongue
-M11Tong          TAGACACCGTG             Tongue
-LMEpi24M         CATGAACAGTG         Freshwater
-SLEpi20M         AGCCGACTCTG         Freshwater
-AQC1cm           GACCACTGCTG Freshwater (creek)
-AQC4cm           CAAGCTAGCTG Freshwater (creek)
-AQC7cm           ATGAAGCACTG Freshwater (creek)
-NP2              TCGCGCAACTG              Ocean
-NP3              GCTAAGTGATG              Ocean
-NP5              GAACGATCATG              Ocean
-TRRsed1          CACGTGACATG Sediment (estuary)
-TRRsed2          TGCGCTGAATG Sediment (estuary)
-TRRsed3          GATGTATGTGG Sediment (estuary)
-TS28             GCATCGTCTGG              Feces
-TS29             CTAGTCGCTGG              Feces
-Even1            TGACTCTGCGG               Mock
-Even2            TCTGATCGAGG               Mock
-Even3            AGAGAGACAGG               Mock
-                                          Description
-CL3          Calhoun South Carolina Pine soil, pH 4.9
-CC1          Cedar Creek Minnesota, grassland, pH 6.1
-SV1        Sevilleta new Mexico, desert scrub, pH 8.3
-M31Fcsw       M3, Day 1, fecal swab, whole body study
-M11Fcsw      M1, Day 1, fecal swab, whole body study
-M31Plmr       M3, Day 1, right palm, whole body study
-M11Plmr      M1, Day 1, right palm, whole body study
-F21Plmr     F1, Day 1,  right palm, whole body study
-M31Tong          M3, Day 1, tongue, whole body study
-M11Tong          M1, Day 1, tongue, whole body study
-LMEpi24M Lake Mendota Minnesota, 24 meter epilimnion
-SLEpi20M Sparkling Lake Wisconsin, 20 meter eplimnion
-AQC1cm                   Allequash Creek, 0-1cm depth
-AQC4cm                  Allequash Creek, 3-4 cm depth
-AQC7cm                  Allequash Creek, 6-7 cm depth
-NP2            Newport Pier, CA surface water, Time 1
-NP3            Newport Pier, CA surface water, Time 2
-NP5            Newport Pier, CA surface water, Time 3
-TRRsed1                Tijuana River Reserve, depth 1
-TRRsed2                Tijuana River Reserve, depth 2
-TRRsed3                Tijuana River Reserve, depth 2
-TS28                                          Twin #1
-TS29                                          Twin #2
-Even1                                           Even1
-Even2                                           Even2
-Even3                                           Even3</code></pre>
+<pre class="output" tabindex="0"><code>Sample Data:        [6 samples by 7 sample variables]:
+        X.SampleID  Primer Final_Barcode Barcode_truncated_plus_T
+CL3            CL3 ILBC_01        AACGCA                   TGCGTT
+CC1            CC1 ILBC_02        AACTCG                   CGAGTT
+SV1            SV1 ILBC_03        AACTGT                   ACAGTT
+M31Fcsw    M31Fcsw ILBC_04        AAGAGA                   TCTCTT
+M11Fcsw    M11Fcsw ILBC_05        AAGCTG                   CAGCTT
+M31Plmr    M31Plmr ILBC_07        AATCGT                   ACGATT
+        Barcode_full_length SampleType
+CL3             CTAGCGTGCGT       Soil
+CC1             CATCGACGAGT       Soil
+SV1             GTACGCACAGT       Soil
+M31Fcsw         TCGACATCTCT      Feces
+M11Fcsw         CGACTGCAGCT      Feces
+M31Plmr         CGAGTCACGAT       Skin
+                                       Description
+CL3       Calhoun South Carolina Pine soil, pH 4.9
+CC1       Cedar Creek Minnesota, grassland, pH 6.1
+SV1     Sevilleta new Mexico, desert scrub, pH 8.3
+M31Fcsw    M3, Day 1, fecal swab, whole body study
+M11Fcsw   M1, Day 1, fecal swab, whole body study
+M31Plmr    M3, Day 1, right palm, whole body study</code></pre>
 </div>
 <p>Next we often need to do some data pruning or subsetting. In this
 case we are making sure we remove taxa that doesn’t have any sequences
@@ -712,8 +653,8 @@ sample_data() Sample Data:       [ 26 samples by 7 sample variables ]
 tax_table()   Taxonomy Table:    [ 18988 taxa by 7 taxonomic ranks ]
 phy_tree()    Phylogenetic Tree: [ 18988 tips and 18987 internal nodes ]</code></pre>
 </div>
-<div class="section level3">
-<h3 id="alpha-diversity-plots">Alpha diversity plots<a class="anchor" aria-label="anchor" href="#alpha-diversity-plots"></a></h3>
+<div class="section level2">
+<h2 id="alpha-diversity-plots">Alpha diversity plots<a class="anchor" aria-label="anchor" href="#alpha-diversity-plots"></a></h2>
 <p>For microbiome (or community analysis) a common strategy is to
 visualize the alpha diversity of samples. Essentially this is how many
 unique taxa were identified in each sample.</p>
@@ -785,34 +726,13 @@ samples).</p>
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">sampleData</span><span class="op">(</span><span class="va">GP</span><span class="op">)</span><span class="op">$</span><span class="va">human</span> <span class="op">&lt;-</span> <span class="fu">getVariable</span><span class="op">(</span><span class="va">GP</span>, <span class="st">"SampleType"</span><span class="op">)</span> <span class="op">%in%</span> </span>
+<code class="sourceCode R"><span><span class="fu">sampleData</span><span class="op">(</span><span class="va">GP</span><span class="op">)</span><span class="op">$</span><span class="va">human</span> <span class="op">&lt;-</span> <span class="fu">getVariable</span><span class="op">(</span><span class="va">GP</span>, <span class="st">"SampleType"</span><span class="op">)</span> <span class="op">%in%</span></span>
 <span>  <span class="fu">c</span><span class="op">(</span><span class="st">"Feces"</span>, <span class="st">"Mock"</span>, <span class="st">"Skin"</span>, <span class="st">"Tongue"</span><span class="op">)</span></span></code></pre>
-</div>
-<div class="codewrapper">
-<h3 class="code-label">WARNING<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="warning" tabindex="0"><code>Warning in getVariable(GP, "SampleType"): 'getVariable' is deprecated.
-Use 'get_variable' instead.
-See help("Deprecated") and help("phyloseq-deprecated").</code></pre>
-</div>
-<div class="codewrapper">
-<h3 class="code-label">WARNING<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="warning" tabindex="0"><code>Warning in sampleData(`*tmp*`): 'sampleData' is deprecated.
-Use 'sample_data' instead.
-See help("Deprecated") and help("phyloseq-deprecated").</code></pre>
-</div>
-<div class="codewrapper">
-<h3 class="code-label">WARNING<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="warning" tabindex="0"><code>Warning in `sampleData&lt;-`(`*tmp*`, value = new("sample_data", .Data = list(: 'sampleData&lt;-' is deprecated.
-Use 'sample_data&lt;-' instead.
-See help("Deprecated") and help("phyloseq-deprecated").</code></pre>
 </div>
 <p>Now tell <code>plot_richness</code> to map the new human variable on
 the horizontal axis, and shade the points in different color groups,
 according to which “<code>SampleType</code>” they belong.</p>
-<div class="codewrapper sourceCode" id="cb26">
+<div class="codewrapper sourceCode" id="cb23">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -826,7 +746,7 @@ according to which “<code>SampleType</code>” they belong.</p>
 <figure><img src="../fig/06-application-microbiome-rendered-unnamed-chunk-12-1.png" style="display: block; margin: auto;" class="figure mx-auto d-block"></figure><p>We can merge samples that are from the environment
 (<code>SampleType</code>), and make the points bigger with a ggplot2
 layer. First, merge the samples.</p>
-<div class="codewrapper sourceCode" id="cb27">
+<div class="codewrapper sourceCode" id="cb24">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -839,7 +759,7 @@ layer. First, merge the samples.</p>
 store the default ggplot graphic as <code>p</code>, then add an
 additional <code>geom_point</code> layer with a large size and slight
 transparency.</p>
-<div class="codewrapper sourceCode" id="cb28">
+<div class="codewrapper sourceCode" id="cb25">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -869,7 +789,7 @@ any information or clarity. The good news is that layers can be removed
 from a ggplot object with standard list notation (using the dollar sign
 <code>$</code>).</p>
 <p>First, check which lists are present in <code>p</code>.</p>
-<div class="codewrapper sourceCode" id="cb29">
+<div class="codewrapper sourceCode" id="cb26">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -893,21 +813,553 @@ position_identity </code></pre>
 points, which are small. We can use negative indexing to “pop” it out,
 then add a new <code>geom_point</code> layer with larger point size (the
 following two lines).</p>
-<div class="codewrapper sourceCode" id="cb31">
+<div class="codewrapper sourceCode" id="cb28">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">p</span><span class="op">$</span><span class="va">layers</span> <span class="op">&lt;-</span> <span class="va">p</span><span class="op">$</span><span class="va">layers</span><span class="op">[</span><span class="op">-</span><span class="fl">1</span><span class="op">]</span></span>
-<span><span class="va">p</span> <span class="op">+</span> <span class="fu">geom_point</span><span class="op">(</span>size<span class="op">=</span><span class="fl">5</span>, alpha<span class="op">=</span><span class="fl">0.7</span><span class="op">)</span></span></code></pre>
+<code class="sourceCode R"><span><span class="va">p</span><span class="op">$</span><span class="va">layers</span> <span class="op">&lt;-</span> <span class="va">p</span><span class="op">$</span><span class="va">layers</span><span class="op">[</span><span class="op">-</span><span class="fl">1</span><span class="op">]</span></span></code></pre>
 </div>
-<figure><img src="../fig/06-application-microbiome-rendered-unnamed-chunk-16-1.png" style="display: block; margin: auto;" class="figure mx-auto d-block"></figure></div>
-<div class="section level3">
-<h3 id="phylogenetic-trees">Phylogenetic trees<a class="anchor" aria-label="anchor" href="#phylogenetic-trees"></a></h3>
-<p><a href="https://joey711.github.io/phyloseq/plot_tree-examples.html" class="external-link"></a></p>
+<p>We can further improvde on the plots by setting the theme to
+something simpler.</p>
+<div class="codewrapper sourceCode" id="cb29">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">p1</span> <span class="op">+</span> <span class="fu">theme_bw</span><span class="op">(</span><span class="op">)</span></span></code></pre>
+</div>
+<figure><img src="../fig/06-application-microbiome-rendered-unnamed-chunk-17-1.png" style="display: block; margin: auto;" class="figure mx-auto d-block"></figure></div>
+<div class="section level2">
+<h2 id="updating-the-data-re-formatting">Updating the data &amp; re-formatting<a class="anchor" aria-label="anchor" href="#updating-the-data-re-formatting"></a></h2>
+<p>Now we are going to get a bit more tedious with our data formatting
+and figures. Lets say on the plot above we want to actually order the
+<code>SampleType</code> on the legend by group the sample of human
+origin together and those of non-human together.</p>
+<p>To do this - we have to first extract out the <code>sam_data</code>
+as its own data frame and add in a new column with the factor in this
+order.</p>
+<div class="codewrapper sourceCode" id="cb30">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Extract the sample data as a data frame</span></span>
+<span><span class="va">sample_data_df</span> <span class="op">&lt;-</span> <span class="fu">as.data.frame</span><span class="op">(</span><span class="va">GlobalPatterns</span><span class="op">@</span><span class="va">sam_data</span><span class="op">)</span></span>
+<span><span class="co"># Give it a slightly different column name `SampleTypeOrigin`</span></span>
+<span><span class="va">sample_data_df</span><span class="op">$</span><span class="va">SampleTypeOrigin</span> <span class="op">&lt;-</span> <span class="va">sample_data_df</span><span class="op">$</span><span class="va">SampleType</span></span>
+<span></span>
+<span><span class="co"># Set the order for this factor</span></span>
+<span><span class="va">desired_order_levels</span> <span class="op">&lt;-</span> <span class="fu">c</span><span class="op">(</span></span>
+<span>  <span class="st">"Feces"</span>,</span>
+<span>  <span class="st">"Skin"</span>,</span>
+<span>  <span class="st">"Tongue"</span>,</span>
+<span>  <span class="st">"Mock"</span>,</span>
+<span>  <span class="st">"Freshwater"</span>,</span>
+<span>  <span class="st">"Freshwater (creek)"</span>,</span>
+<span>  <span class="st">"Ocean"</span>,</span>
+<span>  <span class="st">"Sediment (estuary)"</span>,</span>
+<span>  <span class="st">"Soil"</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Now we set the factor and order</span></span>
+<span><span class="va">sample_data_df</span><span class="op">$</span><span class="va">SampleTypeOrigin</span> <span class="op">&lt;-</span> <span class="fu">factor</span><span class="op">(</span><span class="va">sample_data_df</span><span class="op">$</span><span class="va">SampleTypeOrigin</span>, levels <span class="op">=</span> <span class="va">desired_order_levels</span><span class="op">)</span></span>
+<span><span class="co"># Re-make the `GlobalPatterns` data object with this data frame and you will see we now have 9 sample variables</span></span>
+<span><span class="fu">sample_data</span><span class="op">(</span><span class="va">GlobalPatterns</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="va">sample_data_df</span></span>
+<span><span class="va">GlobalPatterns</span></span></code></pre>
+</div>
+<div class="codewrapper">
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="output" tabindex="0"><code>phyloseq-class experiment-level object
+otu_table()   OTU Table:         [ 19216 taxa and 26 samples ]
+sample_data() Sample Data:       [ 26 samples by 8 sample variables ]
+tax_table()   Taxonomy Table:    [ 19216 taxa by 7 taxonomic ranks ]
+phy_tree()    Phylogenetic Tree: [ 19216 tips and 19215 internal nodes ]</code></pre>
+</div>
+<p>But because we remade the phyloseq object we now need to perform the
+same subsetting we did to generate the <code>GP</code> data object
+again. We also have to add in that extra <code>human</code> variable
+again too.</p>
+<div class="codewrapper sourceCode" id="cb32">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Remove taxa with 0 reads</span></span>
+<span><span class="va">GP</span> <span class="op">&lt;-</span> <span class="fu">prune_species</span><span class="op">(</span><span class="fu">speciesSums</span><span class="op">(</span><span class="va">GlobalPatterns</span><span class="op">)</span> <span class="op">&gt;</span> <span class="fl">0</span>, <span class="va">GlobalPatterns</span><span class="op">)</span></span></code></pre>
+</div>
+<div class="codewrapper">
+<h3 class="code-label">WARNING<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="warning" tabindex="0"><code>Warning in prune_species(speciesSums(GlobalPatterns) &gt; 0, GlobalPatterns): 'prune_species' is deprecated.
+Use 'prune_taxa' instead.
+See help("Deprecated") and help("phyloseq-deprecated").</code></pre>
+</div>
+<div class="codewrapper">
+<h3 class="code-label">WARNING<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="warning" tabindex="0"><code>Warning in speciesSums(GlobalPatterns): 'speciesSums' is deprecated.
+Use 'taxa_sums' instead.
+See help("Deprecated") and help("phyloseq-deprecated").</code></pre>
+</div>
+<div class="codewrapper sourceCode" id="cb35">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Add in the human variable for SampleType</span></span>
+<span><span class="fu">sampleData</span><span class="op">(</span><span class="va">GP</span><span class="op">)</span><span class="op">$</span><span class="va">human</span> <span class="op">&lt;-</span> <span class="fu">getVariable</span><span class="op">(</span><span class="va">GP</span>, <span class="st">"SampleType"</span><span class="op">)</span> <span class="op">%in%</span></span>
+<span>  <span class="fu">c</span><span class="op">(</span><span class="st">"Feces"</span>, <span class="st">"Mock"</span>, <span class="st">"Skin"</span>, <span class="st">"Tongue"</span><span class="op">)</span></span></code></pre>
+</div>
+<div class="codewrapper">
+<h3 class="code-label">WARNING<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="warning" tabindex="0"><code>Warning in getVariable(GP, "SampleType"): 'getVariable' is deprecated.
+Use 'get_variable' instead.
+See help("Deprecated") and help("phyloseq-deprecated").</code></pre>
+</div>
+<div class="codewrapper">
+<h3 class="code-label">WARNING<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="warning" tabindex="0"><code>Warning in sampleData(`*tmp*`): 'sampleData' is deprecated.
+Use 'sample_data' instead.
+See help("Deprecated") and help("phyloseq-deprecated").</code></pre>
+</div>
+<div class="codewrapper">
+<h3 class="code-label">WARNING<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="warning" tabindex="0"><code>Warning in `sampleData&lt;-`(`*tmp*`, value = new("sample_data", .Data = list(: 'sampleData&lt;-' is deprecated.
+Use 'sample_data&lt;-' instead.
+See help("Deprecated") and help("phyloseq-deprecated").</code></pre>
+</div>
+<div class="codewrapper sourceCode" id="cb39">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">sample_data</span><span class="op">(</span><span class="va">GP</span><span class="op">)</span><span class="op">$</span><span class="va">human</span> <span class="op">&lt;-</span> <span class="fu">as.logical</span><span class="op">(</span><span class="fu">sample_data</span><span class="op">(</span><span class="va">GP</span><span class="op">)</span><span class="op">$</span><span class="va">human</span><span class="op">)</span></span></code></pre>
 </div>
 <div class="section level3">
-<h3 id="ordination-plots">Ordination plots<a class="anchor" aria-label="anchor" href="#ordination-plots"></a></h3>
-<p><a href="https://joey711.github.io/phyloseq/plot_ordination-examples.html" class="external-link"></a></p>
+<h3 id="remaking-the-alpha-diversity-plot">Remaking the alpha diversity plot<a class="anchor" aria-label="anchor" href="#remaking-the-alpha-diversity-plot"></a></h3>
+<p>Only <em>now</em> we can we remake that alpha diversity plot from
+before - now the change in order of the legend</p>
+<div class="codewrapper sourceCode" id="cb40">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu">plot_richness</span><span class="op">(</span></span>
+<span>  <span class="va">GP</span>,</span>
+<span>  x <span class="op">=</span> <span class="st">"human"</span>,</span>
+<span>  color <span class="op">=</span> <span class="st">"SampleTypeOrigin"</span>,</span>
+<span>  measures <span class="op">=</span> <span class="fu">c</span><span class="op">(</span><span class="st">"Chao1"</span>, <span class="st">"Shannon"</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span><span class="va">p1</span> <span class="op">&lt;-</span> <span class="va">p</span> <span class="op">+</span> <span class="fu">geom_point</span><span class="op">(</span>size <span class="op">=</span> <span class="fl">5</span>, alpha <span class="op">=</span> <span class="fl">0.7</span><span class="op">)</span></span>
+<span><span class="va">p1</span></span></code></pre>
+</div>
+<figure><img src="../fig/06-application-microbiome-rendered-unnamed-chunk-20-1.png" style="display: block; margin: auto;" class="figure mx-auto d-block"></figure><p>We can then apply a manual customise colour scale for our variables,
+grouping by colour</p>
+<div class="codewrapper sourceCode" id="cb41">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">p1</span> <span class="op">+</span> <span class="fu">scale_color_manual</span><span class="op">(</span>values <span class="op">=</span> <span class="fu">c</span><span class="op">(</span></span>
+<span>  <span class="st">"#9e0142"</span>,</span>
+<span>  <span class="st">"#d53e4f"</span>,</span>
+<span>  <span class="st">"#f46d43"</span>,</span>
+<span>  <span class="st">"#252525"</span>,</span>
+<span>  <span class="st">"#e6f598"</span>,</span>
+<span>  <span class="st">"#abdda4"</span>,</span>
+<span>  <span class="st">"#66c2a5"</span>,</span>
+<span>  <span class="st">"#3288bd"</span>,</span>
+<span>  <span class="st">"#5e4fa2"</span></span>
+<span><span class="op">)</span> <span class="op">)</span> <span class="op">+</span> <span class="fu">theme_bw</span><span class="op">(</span><span class="op">)</span></span></code></pre>
+</div>
+<figure><img src="../fig/06-application-microbiome-rendered-unnamed-chunk-21-1.png" style="display: block; margin: auto;" class="figure mx-auto d-block"></figure><blockquote>
+<p>In collaborative research, it’s almost inevitable that you’ll need to
+add extra variables or create new ways to subset and view your data.
+Different team members—each with unique backgrounds and priorities—often
+request specific visualizations to highlight patterns relevant to their
+perspective. Rather than treating these requests as a burden, you can
+make them efficient and reproducible by following good practices.</p>
+</blockquote>
+<p>When your supervisor asks for a new grouping or your collaborator
+wants to see results by location instead of treatment, you can adapt
+quickly—without rewriting your entire analysis. This approach saves
+time, reduces errors, and keeps your workflow transparent.</p>
+</div>
+</div>
+<div class="section level2">
+<h2 id="phylogenetic-trees">Phylogenetic trees<a class="anchor" aria-label="anchor" href="#phylogenetic-trees"></a></h2>
+<p>The next set of figures work through some visualization pf
+phylogenetic trees and incorporations of sample data for annotation,
+examples taken from the <a href="https://joey711.github.io/phyloseq/plot_tree-examples.html" class="external-link">phyloseq
+tree tutorial</a>.</p>
+<p>We want to plot trees, sometimes even bootstrap values, but notice
+that the node labels in the <code>GlobalPatterns</code> dataset are
+actually a bit strange. They look like they might be bootstrap values,
+but they sometimes have two decimals.</p>
+<div class="codewrapper sourceCode" id="cb42">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">head</span><span class="op">(</span><span class="fu">phy_tree</span><span class="op">(</span><span class="va">GlobalPatterns</span><span class="op">)</span><span class="op">$</span><span class="va">node.label</span>, <span class="fl">10</span><span class="op">)</span></span></code></pre>
+</div>
+<div class="codewrapper">
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="output" tabindex="0"><code> [1] ""          "0.858.4"   "1.000.154" "0.764.3"   "0.995.2"   "1.000.2"
+ [7] "0.943.7"   "0.971.6"   "0.766"     "0.611"    </code></pre>
+</div>
+<p>Could systematically remove the second decimal, but why not just take
+the first 4 characters instead?</p>
+<div class="codewrapper sourceCode" id="cb44">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">phy_tree</span><span class="op">(</span><span class="va">GlobalPatterns</span><span class="op">)</span><span class="op">$</span><span class="va">node.label</span> <span class="op">=</span> <span class="fu">substr</span><span class="op">(</span><span class="fu">phy_tree</span><span class="op">(</span><span class="va">GlobalPatterns</span><span class="op">)</span><span class="op">$</span><span class="va">node.label</span>, <span class="fl">1</span>, <span class="fl">4</span><span class="op">)</span></span></code></pre>
+</div>
+<p>Great, now that we’re more happy with the node labels at least
+looking like bootstrap values, we can move on to using these along with
+other information about data mapped onto the tree graphic.</p>
+<p>The <code>GlobalPatterns</code> dataset has many OTUs, more than we
+would want to try to fit on a tree graphic</p>
+<div class="codewrapper sourceCode" id="cb45">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">ntaxa</span><span class="op">(</span><span class="va">GlobalPatterns</span><span class="op">)</span></span></code></pre>
+</div>
+<div class="codewrapper">
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="output" tabindex="0"><code>[1] 19216</code></pre>
+</div>
+<p>So, let’s arbitrarily prune to just the first 50 OTUs in
+<code>GlobalPatterns</code>, and store this as <code>physeq</code>,
+which also happens to be the name for most main data parameters of
+function in the phyloseq package.</p>
+<div class="codewrapper sourceCode" id="cb47">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">physeq</span> <span class="op">&lt;-</span> <span class="fu">prune_taxa</span><span class="op">(</span><span class="fu">taxa_names</span><span class="op">(</span><span class="va">GlobalPatterns</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">50</span><span class="op">]</span>, <span class="va">GlobalPatterns</span><span class="op">)</span></span></code></pre>
+</div>
+<p>Now let’s look at what happens with the default
+<code>plot_tree</code> settings.</p>
+<div class="codewrapper sourceCode" id="cb48">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">plot_tree</span><span class="op">(</span><span class="va">physeq</span><span class="op">)</span></span></code></pre>
+</div>
+<figure><img src="../fig/06-application-microbiome-rendered-unnamed-chunk-26-1.png" style="display: block; margin: auto;" class="figure mx-auto d-block"></figure><p>By default, black dots are annotated next to tips (OTUs) in the tree,
+one for each sample in which that OTU was observed. Some have more dots
+than others. Also by default, the node labels that were stored in the
+tree were added next to each node without any processing (although we
+had trimmed their length to 4 characters in the previous step).</p>
+<p>What if we want to just see the tree with no sample points next to
+the tips?</p>
+<div class="codewrapper sourceCode" id="cb49">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">plot_tree</span><span class="op">(</span><span class="va">physeq</span>, <span class="st">"treeonly"</span><span class="op">)</span></span></code></pre>
+</div>
+<p><img src="../fig/06-application-microbiome-rendered-unnamed-chunk-27-1.png" style="display: block; margin: auto;" class="figure">
+And what about without the node labels either?</p>
+<div class="codewrapper sourceCode" id="cb50">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">plot_tree</span><span class="op">(</span><span class="va">physeq</span>, <span class="st">"treeonly"</span>, <span class="va">nodeplotblank</span><span class="op">)</span></span></code></pre>
+</div>
+<p><img src="../fig/06-application-microbiome-rendered-unnamed-chunk-28-1.png" style="display: block; margin: auto;" class="figure">
+We can adjust the way branches are rotated to make it look nicer using
+the <code>ladderize</code> parameter.</p>
+<div class="codewrapper sourceCode" id="cb51">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">plot_tree</span><span class="op">(</span><span class="va">physeq</span>, <span class="st">"treeonly"</span>, <span class="va">nodeplotblank</span>, ladderize<span class="op">=</span><span class="st">"left"</span><span class="op">)</span></span></code></pre>
+</div>
+<figure><img src="../fig/06-application-microbiome-rendered-unnamed-chunk-29-1.png" style="display: block; margin: auto;" class="figure mx-auto d-block"></figure><div class="codewrapper sourceCode" id="cb52">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">plot_tree</span><span class="op">(</span><span class="va">physeq</span>, <span class="st">"treeonly"</span>, <span class="va">nodeplotblank</span>, ladderize<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span></code></pre>
+</div>
+<p><img src="../fig/06-application-microbiome-rendered-unnamed-chunk-29-2.png" style="display: block; margin: auto;" class="figure">
+And what if we want to add the OTU labels next to each tip?</p>
+<div class="codewrapper sourceCode" id="cb53">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">plot_tree</span><span class="op">(</span><span class="va">physeq</span>, nodelabf<span class="op">=</span><span class="va">nodeplotblank</span>, label.tips<span class="op">=</span><span class="st">"taxa_names"</span>, ladderize<span class="op">=</span><span class="st">"left"</span><span class="op">)</span></span></code></pre>
+</div>
+<figure><img src="../fig/06-application-microbiome-rendered-unnamed-chunk-30-1.png" style="display: block; margin: auto;" class="figure mx-auto d-block"></figure><p>Any <code>method</code> parameter argument other than
+<code>"sampledodge"</code> (the default) will not add dodged sample
+points next to the tips.</p>
+<div class="codewrapper sourceCode" id="cb54">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">plot_tree</span><span class="op">(</span><span class="va">physeq</span>, <span class="st">"anythingelse"</span><span class="op">)</span></span></code></pre>
+</div>
+<figure><img src="../fig/06-application-microbiome-rendered-unnamed-chunk-31-1.png" style="display: block; margin: auto;" class="figure mx-auto d-block"></figure><div class="section level3">
+<h3 id="mapping-variables-in-data">Mapping Variables in Data<a class="anchor" aria-label="anchor" href="#mapping-variables-in-data"></a></h3>
+<p>In the default argument to <code>method</code>,
+<code>"sampledodge"</code>, a point is added next to each OTU tip in the
+tree for every sample in which that OTU was observed. We can then map
+certain aesthetic features of these points to variables in our data.</p>
+<div class="section level4">
+<h4 id="color">Color<a class="anchor" aria-label="anchor" href="#color"></a></h4>
+<p>Color is one of the most useful aesthetics in tree graphics when they
+are complicated. Color can be mapped to either taxonomic ranks or sample
+covariates. For instance, we can map color to the type of sample
+collected (environmental location).</p>
+<div class="codewrapper sourceCode" id="cb55">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">plot_tree</span><span class="op">(</span><span class="va">physeq</span>, nodelabf<span class="op">=</span><span class="fu">nodeplotboot</span><span class="op">(</span><span class="op">)</span>, ladderize<span class="op">=</span><span class="st">"left"</span>, color<span class="op">=</span><span class="st">"SampleType"</span><span class="op">)</span></span></code></pre>
+</div>
+<figure><img src="../fig/06-application-microbiome-rendered-unnamed-chunk-32-1.png" style="display: block; margin: auto;" class="figure mx-auto d-block"></figure><p><strong>Keeping colours consistant!</strong></p>
+<p>Now that you are intermediate R users you would be picking up on the
+different colour scales used to map against the same variable. It is
+best practice to keep these consistent across the different types of
+figures. So let’s regenerate the figure mapping the
+<code>SampleTypeOrigin</code> variable to the same set of colours we
+used above for the alpha diversity plot</p>
+<div class="codewrapper sourceCode" id="cb56">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">plot_tree</span><span class="op">(</span><span class="va">physeq</span>,</span>
+<span>  nodelabf <span class="op">=</span> <span class="fu">nodeplotboot</span><span class="op">(</span><span class="op">)</span>,</span>
+<span>  ladderize <span class="op">=</span> <span class="st">"left"</span>,</span>
+<span>  color <span class="op">=</span> <span class="st">"SampleTypeOrigin"</span><span class="op">)</span> <span class="op">+</span> <span class="fu">scale_color_manual</span><span class="op">(</span></span>
+<span>    values <span class="op">=</span> <span class="fu">c</span><span class="op">(</span></span>
+<span>      <span class="st">"#9e0142"</span>,</span>
+<span>      <span class="st">"#d53e4f"</span>,</span>
+<span>      <span class="st">"#f46d43"</span>,</span>
+<span>      <span class="st">"#252525"</span>,</span>
+<span>      <span class="st">"#e6f598"</span>,</span>
+<span>      <span class="st">"#abdda4"</span>,</span>
+<span>      <span class="st">"#66c2a5"</span>,</span>
+<span>      <span class="st">"#3288bd"</span>,</span>
+<span>      <span class="st">"#5e4fa2"</span></span>
+<span>    <span class="op">)</span></span>
+<span>  <span class="op">)</span> </span></code></pre>
+</div>
+<figure><img src="../fig/06-application-microbiome-rendered-unnamed-chunk-33-1.png" style="display: block; margin: auto;" class="figure mx-auto d-block"></figure><p>You can make this even more efficent by including the colouring of a
+variable in your global R chunk for the set up and then refer to it
+using the value - in this case <code>SampleTypeOriginCols</code></p>
+<div class="codewrapper sourceCode" id="cb57">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">SampleTypeOriginCols</span> <span class="op">&lt;-</span> <span class="fu">c</span><span class="op">(</span></span>
+<span>      <span class="st">"#9e0142"</span>,</span>
+<span>      <span class="st">"#d53e4f"</span>,</span>
+<span>      <span class="st">"#f46d43"</span>,</span>
+<span>      <span class="st">"#252525"</span>,</span>
+<span>      <span class="st">"#e6f598"</span>,</span>
+<span>      <span class="st">"#abdda4"</span>,</span>
+<span>      <span class="st">"#66c2a5"</span>,</span>
+<span>      <span class="st">"#3288bd"</span>,</span>
+<span>      <span class="st">"#5e4fa2"</span></span>
+<span>    <span class="op">)</span></span>
+<span><span class="fu">plot_tree</span><span class="op">(</span><span class="va">physeq</span>,</span>
+<span>  nodelabf <span class="op">=</span> <span class="fu">nodeplotboot</span><span class="op">(</span><span class="op">)</span>,</span>
+<span>  ladderize <span class="op">=</span> <span class="st">"left"</span>,</span>
+<span>  color <span class="op">=</span> <span class="st">"SampleTypeOrigin"</span><span class="op">)</span> <span class="op">+</span> <span class="fu">scale_color_manual</span><span class="op">(</span></span>
+<span>    values <span class="op">=</span> <span class="va">SampleTypeOriginCols</span><span class="op">)</span></span></code></pre>
+</div>
+<figure><img src="../fig/06-application-microbiome-rendered-unnamed-chunk-34-1.png" style="display: block; margin: auto;" class="figure mx-auto d-block"></figure><p>We can also map color to taxonomic class.</p>
+<div class="codewrapper sourceCode" id="cb58">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">plot_tree</span><span class="op">(</span><span class="va">physeq</span>, nodelabf<span class="op">=</span><span class="fu">nodeplotboot</span><span class="op">(</span><span class="op">)</span>, ladderize<span class="op">=</span><span class="st">"left"</span>, color<span class="op">=</span><span class="st">"Class"</span><span class="op">)</span></span></code></pre>
+</div>
+<p><img src="../fig/06-application-microbiome-rendered-unnamed-chunk-35-1.png" style="display: block; margin: auto;" class="figure">
+This time we don’t mind the differrent colours because we are mapping it
+against taxonomy</p>
+</div>
+<div class="section level4">
+<h4 id="shape">Shape<a class="anchor" aria-label="anchor" href="#shape"></a></h4>
+<p>You can also map a variable to point shape if it has 6 or fewer
+categories, and this can be done even when color is also mapped. Here we
+map shape to taxonomic class so that we can still indicate it in the
+graphic while also mapping <code>SampleType</code> to point color.</p>
+<div class="codewrapper sourceCode" id="cb59">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">plot_tree</span><span class="op">(</span></span>
+<span>  <span class="va">physeq</span>,</span>
+<span>  nodelabf <span class="op">=</span> <span class="fu">nodeplotboot</span><span class="op">(</span><span class="op">)</span>,</span>
+<span>  ladderize <span class="op">=</span> <span class="st">"left"</span>,</span>
+<span>  color <span class="op">=</span> <span class="st">"SampleTypeOrigin"</span>,</span>
+<span>  shape <span class="op">=</span> <span class="st">"Class"</span></span>
+<span><span class="op">)</span> <span class="op">+</span> <span class="fu">scale_color_manual</span><span class="op">(</span>values <span class="op">=</span> <span class="va">SampleTypeOriginCols</span><span class="op">)</span> </span></code></pre>
+</div>
+<figure><img src="../fig/06-application-microbiome-rendered-unnamed-chunk-36-1.png" style="display: block; margin: auto;" class="figure mx-auto d-block"></figure></div>
+</div>
+<div class="section level3">
+<h3 id="node-labels">Node labels<a class="anchor" aria-label="anchor" href="#node-labels"></a></h3>
+<p>One of the most common reasons to label nodes is to add confidence
+measures, often a bootstrap value, to the nodes of the tree. The
+following graphics show different ways of doing this (labels are added
+by default if present in your tree).</p>
+<div class="codewrapper sourceCode" id="cb60">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># The default</span></span>
+<span><span class="fu">plot_tree</span><span class="op">(</span><span class="va">physeq</span>, color <span class="op">=</span> <span class="st">"SampleTypeOrigin"</span>, ladderize <span class="op">=</span> <span class="st">"left"</span><span class="op">)</span> <span class="op">+</span> <span class="fu">scale_color_manual</span><span class="op">(</span>values <span class="op">=</span> <span class="va">SampleTypeOriginCols</span><span class="op">)</span> </span></code></pre>
+</div>
+<figure><img src="../fig/06-application-microbiome-rendered-unnamed-chunk-37-1.png" style="display: block; margin: auto;" class="figure mx-auto d-block"></figure><div class="codewrapper sourceCode" id="cb61">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Special bootstrap label</span></span>
+<span><span class="fu">plot_tree</span><span class="op">(</span><span class="va">physeq</span>,</span>
+<span>  nodelabf <span class="op">=</span> <span class="fu">nodeplotboot</span><span class="op">(</span><span class="op">)</span>,</span>
+<span>  color <span class="op">=</span> <span class="st">"SampleTypeOrigin"</span>,</span>
+<span>  ladderize <span class="op">=</span> <span class="st">"left"</span><span class="op">)</span> <span class="op">+</span> <span class="fu">scale_color_manual</span><span class="op">(</span>values <span class="op">=</span> <span class="va">SampleTypeOriginCols</span><span class="op">)</span> </span></code></pre>
+</div>
+<figure><img src="../fig/06-application-microbiome-rendered-unnamed-chunk-37-2.png" style="display: block; margin: auto;" class="figure mx-auto d-block"></figure><div class="codewrapper sourceCode" id="cb62">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Special bootstrap label with alternative thresholds</span></span>
+<span><span class="fu">plot_tree</span><span class="op">(</span></span>
+<span>  <span class="va">physeq</span>,</span>
+<span>  nodelabf <span class="op">=</span> <span class="fu">nodeplotboot</span><span class="op">(</span><span class="fl">80</span>, <span class="fl">0</span>, <span class="fl">3</span><span class="op">)</span>,</span>
+<span>  color <span class="op">=</span> <span class="st">"SampleTypeOrigin"</span>,</span>
+<span>  ladderize <span class="op">=</span> <span class="st">"left"</span></span>
+<span><span class="op">)</span> <span class="op">+</span> <span class="fu">scale_color_manual</span><span class="op">(</span>values <span class="op">=</span> <span class="va">SampleTypeOriginCols</span><span class="op">)</span> </span></code></pre>
+</div>
+<figure><img src="../fig/06-application-microbiome-rendered-unnamed-chunk-37-3.png" style="display: block; margin: auto;" class="figure mx-auto d-block"></figure></div>
+<div class="section level3">
+<h3 id="tip-labels">Tip labels<a class="anchor" aria-label="anchor" href="#tip-labels"></a></h3>
+<ul><li>
+<strong>label.tips</strong> - The <code>label.tips</code> parameter
+controls labeling of tree tips (AKA leaves). Default is NULL, indicating
+that no tip labels will be printed. If <code>"taxa_names"</code> is a
+special argument resulting in the OTU name (try <code>taxa_names</code>
+function) being labelled next to the leaves or next to the set of points
+that label the leaves. Alternatively, if your data object contains a
+<code>tax_table</code>, then one of the rank names (from
+<code>rank_names(physeq)</code>) can be provided, and the classification
+of each OTU at that rank will be labeled instead.</li>
+<li>
+<strong>text.size</strong> - A positive numeric argument indicating
+the ggplot2 size parameter for the taxa labels. Default is
+<code>NULL</code>. If left as <code>NULL</code>, this function will
+automatically calculate a (hopefully) optimal text size given the size
+constraints posed by the tree itself (for a vertical tree). This
+argument is included mainly in case the automatically-calculated size is
+wrong and you want to change it. Note that this parameter is only
+meaningful if <code>label.tips</code> is not <code>NULL</code>
+</li>
+</ul><div class="codewrapper sourceCode" id="cb63">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">plot_tree</span><span class="op">(</span></span>
+<span>  <span class="va">physeq</span>,</span>
+<span>  nodelabf <span class="op">=</span> <span class="fu">nodeplotboot</span><span class="op">(</span><span class="fl">80</span>, <span class="fl">0</span>, <span class="fl">3</span><span class="op">)</span>,</span>
+<span>  color <span class="op">=</span> <span class="st">"SampleTypeOrigin"</span>,</span>
+<span>  label.tips <span class="op">=</span> <span class="st">"taxa_names"</span>,</span>
+<span>  ladderize <span class="op">=</span> <span class="st">"left"</span></span>
+<span><span class="op">)</span> <span class="op">+</span> <span class="fu">scale_color_manual</span><span class="op">(</span>values <span class="op">=</span> <span class="va">SampleTypeOriginCols</span><span class="op">)</span> </span></code></pre>
+</div>
+<figure><img src="../fig/06-application-microbiome-rendered-unnamed-chunk-38-1.png" style="display: block; margin: auto;" class="figure mx-auto d-block"></figure></div>
+<div class="section level3">
+<h3 id="radial-tree">Radial Tree<a class="anchor" aria-label="anchor" href="#radial-tree"></a></h3>
+<p>Making a radial tree is easy with ggplot2, simply recognizing that
+our vertically-oriented tree is a cartesian mapping of the data to a
+graphic – and that a radial tree is the same mapping, but with polar
+coordinates instead.</p>
+<div class="codewrapper sourceCode" id="cb64">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">data</span><span class="op">(</span><span class="va">esophagus</span><span class="op">)</span></span>
+<span><span class="fu">plot_tree</span><span class="op">(</span><span class="va">esophagus</span>, color <span class="op">=</span> <span class="st">"Sample"</span>, ladderize <span class="op">=</span> <span class="st">"left"</span><span class="op">)</span> <span class="op">+</span> <span class="fu">coord_polar</span><span class="op">(</span>theta <span class="op">=</span></span>
+<span>    <span class="st">"y"</span><span class="op">)</span></span></code></pre>
+</div>
+<figure><img src="../fig/06-application-microbiome-rendered-unnamed-chunk-39-1.png" style="display: block; margin: auto;" class="figure mx-auto d-block"></figure><p>The <code>GlobalPatterns</code> dataset has additional data we can
+map, so we will re-do some preliminary data loading/trimming to make
+this radial-tree example self contained, and then show the same plot as
+above.</p>
+<div class="codewrapper sourceCode" id="cb65">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">plot_tree</span><span class="op">(</span></span>
+<span>  <span class="va">physeq</span>,</span>
+<span>  nodelabf <span class="op">=</span> <span class="fu">nodeplotboot</span><span class="op">(</span><span class="fl">60</span>, <span class="fl">60</span>, <span class="fl">3</span><span class="op">)</span>,</span>
+<span>  color <span class="op">=</span> <span class="st">"SampleTypeOrigin"</span>,</span>
+<span>  shape <span class="op">=</span> <span class="st">"Class"</span>,</span>
+<span>  ladderize <span class="op">=</span> <span class="st">"left"</span></span>
+<span><span class="op">)</span> <span class="op">+</span> <span class="fu">coord_polar</span><span class="op">(</span>theta <span class="op">=</span> <span class="st">"y"</span><span class="op">)</span> <span class="op">+</span> <span class="fu">scale_color_manual</span><span class="op">(</span>values <span class="op">=</span> <span class="va">SampleTypeOriginCols</span><span class="op">)</span> </span></code></pre>
+</div>
+<figure><img src="../fig/06-application-microbiome-rendered-unnamed-chunk-40-1.png" style="display: block; margin: auto;" class="figure mx-auto d-block"></figure><div id="more-examples-with-the-global-patterns-dataset" class="callout challenge">
+<div class="callout-square">
+<i class="callout-icon" data-feather="zap"></i>
+</div>
+<span class="callout-header">Challenge</span>
+<div id="more-examples-with-the-global-patterns-dataset" class="callout-inner">
+<h3 class="callout-title">More Examples with the Global Patterns
+dataset</h3>
+<div class="callout-content">
+<p>Try exploring more options for generating trees but subsetting
+specific taxa. Starting the Archaea (<em>hint: Archaea is a
+kindgom</em>).</p>
+</div>
+</div>
+</div>
+<div id="accordionSolution3" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
+  <h4 class="accordion-header" id="headingSolution3"> Show me the solution </h4>
+</button>
+<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
+<div class="accordion-body">
+<div class="codewrapper sourceCode" id="cb66">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">gpa</span> <span class="op">&lt;-</span> <span class="fu">subset_taxa</span><span class="op">(</span><span class="va">GlobalPatterns</span>, <span class="va">Kingdom</span><span class="op">==</span><span class="st">"Archaea"</span><span class="op">)</span></span></code></pre>
+</div>
+<p>Identify if the number of different Archaeal taxa is suitable for a
+tree</p>
+<div class="codewrapper sourceCode" id="cb67">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">ntaxa</span><span class="op">(</span><span class="va">gpa</span><span class="op">)</span></span></code></pre>
+</div>
+<div class="codewrapper">
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="output" tabindex="0"><code>[1] 208</code></pre>
+</div>
+<p>Visualise tree</p>
+<div class="codewrapper sourceCode" id="cb69">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">plot_tree</span><span class="op">(</span></span>
+<span>  <span class="va">gpa</span>,</span>
+<span>  nodelabf <span class="op">=</span> <span class="fu">nodeplotboot</span><span class="op">(</span><span class="fl">80</span>, <span class="fl">0</span>, <span class="fl">3</span><span class="op">)</span>,</span>
+<span>  color <span class="op">=</span> <span class="st">"SampleTypeOrigin"</span>,</span>
+<span>  label.tips <span class="op">=</span> <span class="st">"taxa_names"</span>,</span>
+<span>  ladderize <span class="op">=</span> <span class="st">"left"</span></span>
+<span><span class="op">)</span> <span class="op">+</span> <span class="fu">scale_color_manual</span><span class="op">(</span>values <span class="op">=</span> <span class="va">SampleTypeOriginCols</span><span class="op">)</span> </span></code></pre>
+</div>
+<figure><img src="../fig/06-application-microbiome-rendered-unnamed-chunk-43-1.png" style="display: block; margin: auto;" class="figure mx-auto d-block"></figure></div>
+</div>
+</div>
+</div>
 <hr><div id="keypoints1" class="callout keypoints">
 <div class="callout-square">
 <i class="callout-icon" data-feather="key"></i>
@@ -924,6 +1376,11 @@ formatting your data for a specific package early on.</li>
 <li>Packages that generate <a href="https://ggplot2.tidyverse.org/" class="external-link"><em>ggplot2</em></a> compatible
 figures allow for <em>easier</em> manipulations and customise using
 familar syntax</li>
+<li>Get feedback early on from preliminary analysis, this will help you
+improve your data and reporting for generating downstream analysis and
+figures.</li>
+<li>Get comfortabe with the data lifecycle and
+<strong>re</strong>-producing analysis and figures!</li>
 </ul></div>
 </div>
 </div>
@@ -932,7 +1389,12 @@ Place links that you need to refer to multiple times across pages here. Delete
 any links that you are not going to use.
  -->
 </div>
-</section></div> <!-- / div.lesson-content -->
+</div>
+</div>
+
+
+
+      </div> <!-- / div.lesson-content -->
     </main><!-- / main#main-content.main-content --><nav class="bottom-pagination mx-md-4" aria-label="Previous and Next Chapter"><div class="d-block d-sm-block d-md-none">
         <a class="chapter-link" href="../instructor/05-s4.html"><i aria-hidden="true" class="small-arrow" data-feather="arrow-left"></i>Previous</a>
         <a class="chapter-link float-end" href="../instructor/07-reproducible-analysis.html">Next<i aria-hidden="true" class="small-arrow" data-feather="arrow-right"></i></a>
