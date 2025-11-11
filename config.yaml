@@ -66,17 +66,13 @@ contact: 'siobhon.egan@murdoch.edu.au'
 
 # Order of episodes in your lesson
 episodes:
-- 01-setup.Rmd
-- 02-introduction-to-bioconductor.Rmd
-- 03-installing-bioconductor.Rmd
-- 04-getting-help.Rmd
-- 05-s4.Rmd
-- 06-biological-sequences.Rmd
-- 07-genomic-ranges.Rmd
-- 08-annotations.Rmd
-- 09-summarizedexperiment.Rmd
-- 10-application-microbiome.Rmd
-- 11-reproducible-analysis.Rmd
+- 01-introduction.Rmd
+- 02-bioconductor.Rmd
+- 03-biological-sequences.Rmd
+- 04-annotations.Rmd
+- 05-s4-and-summarizedexperiment.Rmd
+- 06-application-microbiome.Rmd
+- 07-reproducible-analysis.Rmd
 
 # Information for Learners
 learners:
