@@ -96,9 +96,6 @@ install.packages(c(
   "ggpubr"
 ))
 
-# Install hrbrthemes from github
-remotes::install_git("https://codeberg.org/hrbrmstr/hrbrthemes.git")
-
 # Install your Bioconductor packages
 if (!require("BiocManager", quietly = TRUE))
     install.packages("BiocManager")

@@ -38,7 +38,6 @@ In this lesson, you will learn:
   - Reports for communicating results
 
 
-
 ::::::::::::::::::::::::::::::::::::::::::  prereq
 
 ## Prerequisites
@@ -80,9 +79,6 @@ BiocManager::install(
     "phyloseq"
   )
 )
-
-# Install packages from github
-remotes::install_git("https://codeberg.org/hrbrmstr/hrbrthemes.git")
 ```
 
 ---
