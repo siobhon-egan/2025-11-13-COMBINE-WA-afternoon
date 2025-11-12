@@ -456,9 +456,13 @@ prior to running.</p>
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># Install your CRAN packages</span></span>
+<code class="sourceCode R"><span><span class="co"># specify latest BiocManager version compatible with R 4.5.1</span></span>
+<span><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="kw">require</span><span class="op">(</span><span class="st">"BiocManager"</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span>
+<span>    <span class="fu">install.packages</span><span class="op">(</span><span class="st">"BiocManager"</span><span class="op">)</span></span>
+<span><span class="fu">BiocManager</span><span class="fu">::</span><span class="fu">install</span><span class="op">(</span>version <span class="op">=</span> <span class="st">"3.22"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Install rest of your CRAN packages</span></span>
 <span><span class="fu">install.packages</span><span class="op">(</span><span class="fu">c</span><span class="op">(</span></span>
-<span>  <span class="st">"BiocManager"</span>,</span>
 <span>  <span class="st">"remotes"</span>,</span>
 <span>  <span class="st">"knitr"</span>,</span>
 <span>  <span class="st">"dplyr"</span>,</span>
@@ -466,10 +470,6 @@ prior to running.</p>
 <span>  <span class="st">"DT"</span>,</span>
 <span>  <span class="st">"ggpubr"</span></span>
 <span><span class="op">)</span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># Install your Bioconductor packages</span></span>
-<span><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="kw">require</span><span class="op">(</span><span class="st">"BiocManager"</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span>
-<span>    <span class="fu">install.packages</span><span class="op">(</span><span class="st">"BiocManager"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu">BiocManager</span><span class="fu">::</span><span class="fu">install</span><span class="op">(</span></span>
 <span>  <span class="fu">c</span><span class="op">(</span><span class="st">"microbiome"</span>,</span>
