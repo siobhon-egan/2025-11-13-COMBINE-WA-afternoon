@@ -455,10 +455,10 @@ loaded via a namespace (and not attached):
 [10] glue_1.8.0          backports_1.5.0     plyr_1.8.9         
 [13] htmltools_0.5.8.1   rmarkdown_2.29      evaluate_1.0.5     
 [16] fastmap_1.2.0       yaml_2.3.10         lifecycle_1.0.4    
-[19] BiocManager_1.30.26 stringr_1.6.0       compiler_4.5.2     
+[19] BiocManager_1.30.27 stringr_1.6.0       compiler_4.5.2     
 [22] Rcpp_1.1.0          timechange_0.3.0    digest_0.6.37      
 [25] R6_2.6.1            magrittr_2.0.4      tools_4.5.2        
-[28] lubridate_1.9.4     xml2_1.4.1         
+[28] lubridate_1.9.4     xml2_1.5.0         
 
 Bioconductor version '3.22'
 
@@ -547,7 +547,7 @@ length(BiocManager::available())
 ```
 
 ``` output
-[1] 26647
+[1] 26689
 ```
 
 Specifically, the union of current Bioconductor repositories and other repositories on the search path can be displayed as follows.
